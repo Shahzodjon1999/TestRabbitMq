@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestRabbitmq.Models;
-using TestRabbitmq.RabbitMQ;
+using TestRabbitmq.RabbitMQs;
 using TestRabbitmq.Services;
 
 namespace TestRabbitmq.Controllers
@@ -36,10 +36,9 @@ namespace TestRabbitmq.Controllers
         [HttpPost("addproduct")]
         public Product AddProduct(Product product)
         {
-            var productData = productService.AddProduct(product);
-
+           var productData = productService.AddProduct(product);
             // send the inserted product data to the queue and consumer will listening this data from queue
-            _rabitMQProducer.SendProductMessage(productData);
+            _rabitMQProducer.SendProductMessage(product);
 
             return productData;
         }

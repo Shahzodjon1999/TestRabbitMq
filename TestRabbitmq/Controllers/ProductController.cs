@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TestRabbitmq.Models;
-using TestRabbitmq.RabbitMQ;
-using TestRabbitmq.Services;
 
 namespace TestRabbitmq.Controllers
 {

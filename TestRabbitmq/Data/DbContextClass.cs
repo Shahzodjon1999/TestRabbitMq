@@ -9,13 +9,16 @@ namespace TestRabbitmq.Data
 
         public DbContextClass(IConfiguration configuration)
         {
-            Configuration = configuration;
-        }
+		
+			Configuration = configuration;
+			Database.EnsureCreated();
+		}
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-        }
+			// options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+			options.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection"));
+		}
 
         public DbSet<Product> Products { get; set; }
     }

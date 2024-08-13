@@ -1,5 +1,5 @@
 using TestRabbitmq.Data;
-using TestRabbitmq.RabbitMQ;
+using TestRabbitmq.RabbitMQs;
 using TestRabbitmq.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,17 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddDbContext<DbContextClass>();
 builder.Services.AddScoped<IRabitMQProducer, RabitMQProducer>();
-
+//added RabbitMq
+builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQ"));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
