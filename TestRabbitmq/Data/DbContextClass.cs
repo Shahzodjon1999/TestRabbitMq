@@ -16,7 +16,6 @@ namespace TestRabbitmq.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-			// options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 			options.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection"));
 		}
 
